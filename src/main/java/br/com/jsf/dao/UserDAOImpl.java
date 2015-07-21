@@ -14,10 +14,6 @@ public class UserDAOImpl implements UserDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
-
 	@Override
 	public void addUser(User user) {
 		sessionFactory.getCurrentSession().save(user);
@@ -35,13 +31,13 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public User getUserById(int id) {
-		List list = sessionFactory.getCurrentSession().createQuery("from User where id=?").setParameter(0, id).list();
+		List<User> list = sessionFactory.getCurrentSession().createQuery("from User where id=?").setParameter(0, id).list();
 		return (User) list.get(0);
 	}
 
 	@Override
 	public List<User> getUsers() {
-		List list = sessionFactory.getCurrentSession().createQuery("from User").list();
+		List<User> list = sessionFactory.getCurrentSession().createQuery("from User").list();
 		return list;
 	}
 

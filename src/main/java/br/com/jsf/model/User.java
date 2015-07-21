@@ -6,17 +6,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "USER")
+@Table(name = "user")
 public class User {
 
 	@Id
-	@Column(name = "ID", unique = true, nullable = false)
+	@Column(name = "id", unique = true, nullable = false)
 	private int id;
 
-	@Column(name = "NAME", unique = true, nullable = false)
+	@Column(name = "name", unique = true, nullable = false)
 	private String name;
 
-	@Column(name = "SURNAME", unique = true, nullable = false)
+	@Column(name = "surname", unique = true, nullable = false)
 	private String surname;
 
 	public int getId() {
