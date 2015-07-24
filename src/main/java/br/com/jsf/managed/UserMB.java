@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,7 +13,7 @@ import br.com.jsf.model.User;
 import br.com.jsf.service.UserService;
 
 @Component(value="userMB")
-@ViewScoped
+@SessionScoped
 public class UserMB implements Serializable {
 
 	private static final long serialVersionUID = 1L;

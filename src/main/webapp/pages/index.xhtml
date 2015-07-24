@@ -10,7 +10,7 @@
                 <td><h:outputLabel for="id" value="Id : " /></td>
                 <td><p:inputText id="id" value="#{userMB.id}">
                         <f:converter converterId="javax.faces.Integer"/>
-                        <p:ajax event="blur" update="idMsg" />
+<!--                         <p:ajax event="blur" update="idMsg" /> -->
                     </p:inputText>
                     <p:message id="idMsg" for="id" display="icon"/> 
                 </td>
@@ -19,7 +19,7 @@
                 <td><h:outputLabel for="name" value="Name : " /></td>
                 <td><p:inputText id="name" value="#{userMB.name}">
                         <f:validateLength minimum="5" /> 
-                        <p:ajax event="blur" update="nameMsg" />
+<!--                         <p:ajax event="blur" update="nameMsg" /> -->
                     </p:inputText>
                     <p:message id="nameMsg" for="name" display="icon"/> 
                 </td>
@@ -28,7 +28,7 @@
                 <td><h:outputLabel for="surname" value="Surname : " /></td>   
                 <td><p:inputText id="surname" value="#{userMB.surname}"> 
                         <f:validateLength minimum="5" /> 
-                        <p:ajax event="blur" update="surnameMsg" />  
+<!--                         <p:ajax event="blur" update="surnameMsg" />   -->
                     </p:inputText>
                     <p:message id="surnameMsg" for="surname" display="icon"/> 
                 </td>    
