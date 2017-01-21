@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/template.xhtml">
+
+	<ui:define name="conteudoPagina">
+		<h:form id="form1">
+
+			<p:messages id="mensagensGerais" for="MensagensGerais"
+				showDetail="true" autoUpdate="true" closable="true"
+				styleClass="mensagensGerais" />
+
+			<p:fieldset legend="#{ResourceLabel.filtro}" id="fieldsetFiltro">
+				<ui:insert name="conteudoFiltro" />
+			</p:fieldset>
+
+			<ui:insert name="conteudoExtraFiltro" />
+
+			<p:toolbar styleClass="toolBar" rendered="#{exibirBotoesPadroes}">
+				<p:toolbarGroup align="left">
+					<p:commandButton value="#{ResourceLabel.tooltip_filtrar}"
+						icon="ui-icon-search" actionListener="#{mb.filtrar}"
+						update="#{updateFiltrar}" />
+					<p:commandButton value="#{ResourceLabel.tooltip_limpar}"
+						icon="ui-icon-document-b" actionListener="#{mb.limpar}"
+						update="form1" />
+					<p:commandButton value="#{ResourceLabel.tooltip_novo}"
+						icon="ui-icon-document" action="#{mb.novo}" />
+					<!-- 					<p:button value="#{ResourceLabel.tooltip_default_btnVoltar}" -->
+					<!-- 						icon="ui-icon-arrowthick-1-w" outcome="#{acaoVoltar}" /> -->
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<p:outputPanel id="conteudoLista">
+				<p:fieldset id="fieldsetLista" legend="#{ResourceLabel.listagem}"
+					rendered="#{exibirConteudoLista}">
+					<ui:insert name="conteudoLista" />
+				</p:fieldset>
+			</p:outputPanel>
+
+			<ui:insert name="conteudoPosLista" />
+
+		</h:form>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/template/crud/tplConsulta.xhtml">
+
+	<ui:param name="mb" value="#{userMBean}" />
+	<ui:param name="updateFiltrar" value="conteudoLista" />
+	<ui:param name="acaoVoltar" value="" />
+	<ui:param name="exibirBotoesPadroes" value="true" />
+	<ui:param name="exibirConteudoLista" value="true" />
+
+	<ui:define name="viewNavigationTrail">
+		<h:outputText value="#{ResourceLabel.funcionario_consulta_navegacao}" />
+	</ui:define>
+	<ui:define name="tituloPagina">
+		<h:outputText value="#{ResourceLabel.funcionario_titulo}" class="tituloPagina" />
+		<br />
+		<h:outputText value="#{ResourceLabel.funcionario_subtitulo}" />
+	</ui:define>
+
+	<ui:define name="conteudoFiltro" />
+
+	<ui:define name="conteudoExtraFiltro" />
+
+	<ui:define name="conteudoLista">
+		<p:dataTable id="users" var="user" value="#{mb.filtrar}"
+			paginator="true" rows="15" style="width: 50%">
+			<p:column headerText="ID" sortBy="#{user.id}">
+				<h:outputText value="#{user.id}" />
+			</p:column>
+			<p:column headerText="NOME" sortBy="#{user.name}">
+				<h:outputText value="#{user.name}" />
+			</p:column>
+			<p:column headerText="SOBRENOME" sortBy="#{user.surname}">
+				<h:outputText value="#{user.surname}" />
+			</p:column>
+		</p:dataTable>
+	</ui:define>
+
+	<ui:define name="conteudoPosLista" />
+
+</ui:composition>

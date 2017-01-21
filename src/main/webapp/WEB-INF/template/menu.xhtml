@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+		"http://www.w3.org/TR/xhtml11-transitional.dtd">
+<ui:composition xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:form id="formMenu">
+		<h:panelGroup>
+			<p:menubar id="menuSistema" model="#{menuMBean.menu}" autoSubmenuDisplay="true" style="z-index:10;">
+				<f:facet name="options">
+					<h:outputText value="Ola, #{menuMBean.usuario} (#{menuMBean.empresa}#{menuMBean.matricula})" />
+					<p:button type="button" href="/LogoutServlet" alt="#{ResourceLabel.tooltip_navegacao_sair_sistema}" 
+							title="#{ResourceLabel.tooltip_navegacao_sair_sistema}" icon="ui-icon-extlink" style="margin-top: -5px; margin-left: 5px;"/>
+		        </f:facet>
+			</p:menubar>
+		</h:panelGroup>	
+	</h:form>
+	<p:sticky widgetVar="menuFixo" target="formMenu:menuSistema" />
+	
+</ui:composition>
