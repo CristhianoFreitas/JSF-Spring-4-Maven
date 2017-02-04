@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.jsf.model.Funcionario;
-import br.com.jsf.service.UserService;
+import br.com.jsf.service.FuncionarioService;
 
 @Component
 @ViewScoped
@@ -18,14 +18,14 @@ public class FuncionarioMBean extends MBeanBase {
 
     private static final long serialVersionUID = 1L;
 
-    private static final String CONSULTA = "funcionarioConsulta?faces-redirect=true";
-    private static final String DETALHE = "funcionarioDetalhe?faces-redirect=true";
+    private static final String CONSULTA = "funcionarioConsulta";
+    private static final String DETALHE = "funcionarioDetalhe";
 
     private Funcionario funcionario;
     private List<Funcionario> funcionarios;
 
     @Autowired
-    UserService funcionarioService;
+    FuncionarioService funcionarioService;
 
     @PostConstruct
     public void init() {
@@ -39,20 +39,22 @@ public class FuncionarioMBean extends MBeanBase {
 	verConteudoLista = false;
     }
     
-    public void filtrar() {
+    public String filtrar() {
 	try {
 	    funcionarios = funcionarioService.listar();
 	    verConteudoLista = true;
+	    return CONSULTA;
 	} catch (final Exception e) {
 	    e.printStackTrace();
 	}
+	return null;
     }
 
     public String salvar() {
 	try {
 	    funcionarioService.salvar(funcionario);
 	    
-            adicionarMensagemInfo("header_sucesso", "salvar_sucesso", null);
+            adicionarMensagemInfo("sucesso", "salvar_sucesso", null);
             verConteudoLista = false;
             return CONSULTA;
             
@@ -84,7 +86,7 @@ public class FuncionarioMBean extends MBeanBase {
 	try {
 	    funcionarioService.excluir(funcionario);
 	    
-            adicionarMensagemInfo("header_sucesso", "excluir_sucesso", null);
+            adicionarMensagemInfo("sucesso", "excluir_sucesso", null);
             return CONSULTA;
             
         } catch (final Exception e) {
@@ -108,14 +110,6 @@ public class FuncionarioMBean extends MBeanBase {
 
     public void setFuncionarios(final List<Funcionario> funcionarios) {
 	this.funcionarios = funcionarios;
-    }
-
-    public UserService getUserService() {
-	return funcionarioService;
-    }
-
-    public void setUserService(final UserService userService) {
-	this.funcionarioService = userService;
     }
 
 }

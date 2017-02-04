@@ -6,13 +6,14 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	template="/WEB-INF/template/crud/tplConsulta.xhtml">
 
-	<ui:param name="managedBean" value="#{funcionarioMBean}" />
+	<ui:param name="mBean" value="#{funcionarioMBean}" />
 	<ui:param name="exibirBotoesPadroes" value="true" />
 	<ui:param name="exibirConteudoLista" value="#{mBean.verConteudoLista}" />
 
 	<ui:define name="viewNavigationTrail">
-		<h:outputText value="#{mBean}" /><br />
-		<h:outputText value="#{exibirBotoesPadroes}" /><br />
+		<h:outputText value="#{mBean}" />
+		<h:outputText value="#{exibirConteudoLista}" />
+		<br />
 		<h:outputText value="#{Labels.funcionario_consulta_navegacao}" />
 	</ui:define>
 	<ui:define name="tituloPagina">
@@ -24,10 +25,24 @@
 
 	<ui:define name="conteudoFiltro" />
 
+	<ui:define name="botoesFiltro">
+		<p:commandButton value="#{Labels.tooltip_filtrar}"
+			icon="ui-icon-search" action="#{mBean.filtrar}" update="form1" />
+
+		<p:commandButton value="#{Labels.tooltip_limpar}"
+			icon="ui-icon-document-b" actionListener="#{funcionarioMBean.limpar}"
+			update="form1" />
+
+		<p:commandButton value="#{Labels.tooltip_novo}"
+			icon="ui-icon-document" action="#{mBean.novo}" />
+
+		<p:button value="#{Labels.tooltip_voltar}"
+			icon="ui-icon-arrowthick-1-w" outcome="/faces/principal" />
+	</ui:define>
 
 	<ui:define name="conteudoLista">
-		<p:dataTable id="users" var="obj" value="#{mBean.funcionarios}"
-			paginator="true" rows="12" paginatorPosition="bottom"
+		<p:dataTable value="#{mBean.funcionarios}" var="obj" paginator="true"
+			rows="12" paginatorPosition="bottom"
 			rowsPerPageTemplate="12,24,36,48"
 			emptyMessage="#{Labels.lbl_default_NoRecordFont}">
 
@@ -41,48 +56,23 @@
 				<h:outputText value="#{obj.sobrenome}" />
 			</p:column>
 
-			<p:column headerText="#{Labels.lbl_default_acoes}"
+			<p:column headerText="#{Labels.acoes}"
 				style="width:10%; text-align: center;">
-				<p:commandButton action="#{mBean.detalhe}" title="#{Labels.editar}"
-					icon="ui-icon-search">
-					<f:setPropertyActionListener value="#{obj}"
-						target="#{mBean.funcionario}" />
+				
+				<p:commandButton actionListener="#{mBean.detalhe(obj)}"
+					title="#{Labels.editar}" icon="ui-icon-search">
 				</p:commandButton>
 
-				<p:column headerText="#{Labels.acoes}"
-					style="width:10%; text-align: center;">
-					<p:commandButton action="#{mBean.detalhe(obj)}"
-						title="#{Labels.editar}" icon="ui-icon-search">
-					</p:commandButton>
-
-					<p:commandButton
-						onclick="javascript:return confirm('#{Mensagens.confirmaExclusao}')"
-						icon="ui-icon-trash" title="#{Labels.tooltip_excluir}"
-						immediate="true" actionListener="#{mBean.excluir(obj)}"
-						update="@parent">
-					</p:commandButton>
-
-				</p:column>
+				<p:commandButton
+					onclick="javascript:return confirm('#{Mensagens.confirmaExclusao}')"
+					icon="ui-icon-trash" title="#{Labels.tooltip_excluir}"
+					immediate="true" actionListener="#{mBean.excluir(obj)}"
+					update="@form">
+				</p:commandButton>
+				
 			</p:column>
 
 		</p:dataTable>
 	</ui:define>
-
-	<ui:define name="botoesFiltro">
-		<p:commandButton value="#{Labels.tooltip_filtrar}"
-			icon="ui-icon-search" actionListener="#{mBean.filtrar}"
-			update="conteudoLista" />
-
-		<p:commandButton value="#{Labels.tooltip_limpar}"
-			icon="ui-icon-document-b" actionListener="#{mBean.limpar}"
-			update="form1" />
-
-		<p:commandButton value="#{Labels.tooltip_novo}"
-			icon="ui-icon-document" action="#{mBean.novo}" />
-
-		<!-- 					<p:button value="#{Labels.tooltip_default_btnVoltar}" -->
-		<!-- 						icon="ui-icon-arrowthick-1-w" outcome="#{acaoVoltar}" /> -->
-	</ui:define>
-
 
 </ui:composition>

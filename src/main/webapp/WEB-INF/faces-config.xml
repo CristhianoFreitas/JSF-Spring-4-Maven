@@ -11,19 +11,22 @@
         <el-resolver>
             org.springframework.web.jsf.el.SpringBeanFacesELResolver
         </el-resolver>
+        
         <locale-config>
    			<default-locale>pt_BR</default-locale>
    			<supported-locale>pt_BR</supported-locale>
   		</locale-config>
+  		
   		<message-bundle>META-INF/messages</message-bundle>
   		<resource-bundle>
    			<base-name>META-INF/messages</base-name>
    			<var>Mensagens</var>
   		</resource-bundle>
   		<resource-bundle>
-   			<base-name>META-INF/label_pt_BR</base-name>
+   			<base-name>META-INF/label</base-name>
    			<var>Labels</var>
   		</resource-bundle>
+  		
 <!--   		<converter> -->
 <!-- 		  <converter-for-class>java.lang.Enum</converter-for-class> -->
 <!-- 		  <converter-class>javax.faces.convert.EnumConverter</converter-class> -->
