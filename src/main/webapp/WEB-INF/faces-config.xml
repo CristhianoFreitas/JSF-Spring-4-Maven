@@ -18,16 +18,16 @@
   		<message-bundle>META-INF/messages</message-bundle>
   		<resource-bundle>
    			<base-name>META-INF/messages</base-name>
-   			<var>ResourceMessages</var>
+   			<var>Mensagens</var>
   		</resource-bundle>
   		<resource-bundle>
    			<base-name>META-INF/label_pt_BR</base-name>
-   			<var>ResourceLabel</var>
+   			<var>Labels</var>
   		</resource-bundle>
-  		<converter>
-		  <converter-for-class>java.lang.Enum</converter-for-class>
-		  <converter-class>javax.faces.convert.EnumConverter</converter-class>
-		</converter>
+<!--   		<converter> -->
+<!-- 		  <converter-for-class>java.lang.Enum</converter-for-class> -->
+<!-- 		  <converter-class>javax.faces.convert.EnumConverter</converter-class> -->
+<!-- 		</converter> -->
     </application>
     
 </faces-config>

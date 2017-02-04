@@ -4,23 +4,19 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	template="/WEB-INF/template/crud/tplPageGenerica.xhtml">
+	template="/WEB-INF/template/crud/tplGenerico.xhtml">
 	
 	<ui:define name="viewNavigationTrail">
-<!-- 		<h:outputText value="#{ResourceLabel.lbl_Home_viewNavigationTrail}" class="viewNavigationTrail"/> -->
-		<h:outputText value="Home trail" class="viewNavigationTrail"/>
+		<h:outputText value="#{Labels.home_viewNavigationTrail}" class="viewNavigationTrail"/>
 	</ui:define>
-	
 	<ui:define name="tituloPagina">
-<!-- 		<h:outputText value="#{ResourceLabel.lbl_home_tituloPagina}" class="tituloPagina"/><br/> -->
-<!-- 		<h:outputText value="#{ResourceLabel.lbl_home_tituloPagina_descricao}"/> -->
-
-		<h:outputText value="Home titulo" class="tituloPagina"/><br/>
-		<h:outputText value="Home subtitulo"/>
+		<h:outputText value="#{Labels.home_tituloPagina}" class="tituloPagina"/><br/>
+		<h:outputText value="#{Labels.home_tituloPagina_descricao}"/>
 	</ui:define>
 	
 	<ui:define name="conteudoGenerico">
-		<div id="paginaInicial"></div>
+		<div id="paginaInicial" />
+		<p:link outcome="/faces/aplicacao/funcionario/funcionarioConsulta" value="Link" />
 	</ui:define>
 	
 </ui:composition>

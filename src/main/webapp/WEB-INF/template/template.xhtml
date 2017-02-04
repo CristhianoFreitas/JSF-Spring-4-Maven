@@ -23,11 +23,11 @@
 					<ui:insert name="viewNavigationTrail" />
 				</div>
 			</div>
-			
+
 			<div id="conteudo">
 				<ui:insert name="conteudoPagina" />
 			</div>
-			
+
 			<ui:include src="rodape.xhtml" />
 		</div>
 
@@ -37,9 +37,10 @@
 				onsuccess="PF('statusDialog').hide(); fixSticky();"
 				onerror="PF('statusDialog').hide(); fixSticky();"
 				oncomplete="PF('statusDialog').hide(); fixSticky();" />
+				
 			<p:dialog modal="true" widgetVar="statusDialog" showHeader="false"
-				draggable="false" closable="false">
-				<p:graphicImage library="style" name="img/loading2.gif" />
+				draggable="false" closable="false" resizable="false">
+				<p:graphicImage library="style" name="img/loading3.gif" />
 			</p:dialog>
 		</h:form>
 

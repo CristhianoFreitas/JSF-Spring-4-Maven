@@ -8,21 +8,23 @@
 
 	<ui:define name="conteudoPagina">
 		<h:form id="form1">
-		
-			<p:messages id="mensagensGerais" for ="MensagensGerais" showDetail="true" autoUpdate="true" closable="true" styleClass="mensagensGerais"/>
-			
+
+			<p:messages id="mensagensGerais" for="MensagensGerais" showDetail="true" autoUpdate="true" closable="true"
+				styleClass="mensagensGerais" />
+
 			<p:fieldset legend="#{legendaFieldset}">
 				<ui:insert name="conteudoDetalhes" />
 			</p:fieldset>
-			
+
 			<ui:insert name="conteudoExtraDetalhes" />
-			
+
 			<p:toolbar styleClass="toolBar">
-				<p:toolbarGroup align="left">
+				<f:facet name="left">
 					<ui:insert name="botoesPesonalizados" />
-				</p:toolbarGroup>
+				</f:facet>
 			</p:toolbar>
-			
+
 		</h:form>
 	</ui:define>
+	
 </ui:composition>

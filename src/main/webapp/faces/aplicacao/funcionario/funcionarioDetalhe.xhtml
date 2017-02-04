@@ -4,64 +4,63 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:pe="http://primefaces.org/ui/extensions"
 	template="/WEB-INF/template/crud/tplDetalhe.xhtml">
 
+	<ui:param name="mBean" value="#{funcionarioMBean}" />
+	<ui:param name="legendaFieldset" value="mnt" />
+
 	<ui:define name="viewNavigationTrail">
-		<h:outputText value="funcionario/consulta" />
+		<h:outputText value="#{Labels.funcionario_detalhe_navegacao}" />
 	</ui:define>
 	<ui:define name="tituloPagina">
-		<h:outputText value="Manutencao de Funcionarios" class="tituloPagina" />
+		<h:outputText value="#{Labels.funcionario_titulo}" class="tituloPagina" />
 		<br />
-		<h:outputText value="Manutencao de Funcionarios para Visualizacao" />
+		<h:outputText value="#{Labels.funcionario_subtitulo}" />
 	</ui:define>
-
-	<ui:param name="mb" value="#{userMBean}" />
-	<ui:param name="legendaFieldset" value="mnt" />
 
 	<ui:define name="conteudoDetalhes" styleClass="panelGrid">
 		<p:panelGrid styleClass="panelGrid" style="width:100%;">
 			<p:row>
 				<p:column>
-					<h:outputLabel for="id" value="Id : " />
+					<h:outputLabel for="id" value="Id: " />
 				</p:column>
 				<p:column>
-					<p:inputText id="id" value="#{mb.id}" />
-				</p:column>
-			</p:row>
-			<p:row>
-				<p:column>
-					<h:outputLabel for="name" value="Nome : " />
-				</p:column>
-				<p:column>
-					<p:inputText id="name" value="#{mb.name}" />
+					<p:inputText id="id" value="#{mBean.funcionario.id}" />
 				</p:column>
 			</p:row>
 			<p:row>
 				<p:column>
-					<h:outputLabel for="surname" value="Surname : " />
+					<h:outputLabel for="nome" value="Nome: " />
 				</p:column>
 				<p:column>
-					<p:inputText id="surname" value="#{mb.surname}" />
+					<p:inputText id="nome" value="#{mBean.funcionario.nome}" />
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column>
+					<h:outputLabel for="sobrenome" value="Sobrenome: " />
+				</p:column>
+				<p:column>
+					<p:inputText id="sobrenome" value="#{mBean.funcionario.sobrenome}" />
 				</p:column>
 			</p:row>
 		</p:panelGrid>
 	</ui:define>
 
 	<ui:define name="botoesPesonalizados">
-		<p:commandButton id="salvar" value="Criar" action="#{mb.salvar}" />
+		<p:commandButton id="salvar" value="Criar" action="#{mBean.salvar}" />
 
-		<p:commandButton id="voltar" value="Voltar" action="#{mb.consulta}" />
+		<p:commandButton id="voltar" value="Voltar" action="#{mBean.voltar}" />
 
-		<!-- 		<p:commandButton value="#{ResourceLabel.lbl_default_btnVoltar}" -->
+		<!-- 		<p:commandButton value="#{Labels.lbl_default_btnVoltar}" -->
 		<!-- 			             icon="ui-icon-arrowthick-1-w" process="@this" -->
 		<!-- 			             id="botaoVoltar" -->
-		<!-- 			             action="#{mb.redirectConsulta}"/> -->
+		<!-- 			             action="#{mBean.redirectConsulta}"/> -->
 
 		<!-- 		<p:commandButton	id="botaoSalvar" -->
 		<!-- 							onclick="PF('confirmSaveDialog').show();" -->
 		<!-- 							icon="ui-icon-novo" -->
-		<!-- 							value="#{ResourceLabel.tooltip_default_btnSalvar}"/> -->
+		<!-- 							value="#{Labels.tooltip_default_btnSalvar}"/> -->
 	</ui:define>
 
 </ui:composition>

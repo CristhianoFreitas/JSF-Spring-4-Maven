@@ -11,8 +11,8 @@
 			<p:menubar id="menuSistema" model="#{menuMBean.menu}" autoSubmenuDisplay="true" style="z-index:10;">
 				<f:facet name="options">
 					<h:outputText value="Ola, #{menuMBean.usuario} (#{menuMBean.empresa}#{menuMBean.matricula})" />
-					<p:button type="button" href="/LogoutServlet" alt="#{ResourceLabel.tooltip_navegacao_sair_sistema}" 
-							title="#{ResourceLabel.tooltip_navegacao_sair_sistema}" icon="ui-icon-extlink" style="margin-top: -5px; margin-left: 5px;"/>
+					<p:button type="button" href="/LogoutServlet" alt="#{Labels.tooltip_navegacao_sair_sistema}" 
+							title="#{Labels.tooltip_navegacao_sair_sistema}" icon="ui-icon-extlink" style="margin-top: -5px; margin-left: 5px;"/>
 		        </f:facet>
 			</p:menubar>
 		</h:panelGroup>	

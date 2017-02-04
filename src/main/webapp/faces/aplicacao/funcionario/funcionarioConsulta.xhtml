@@ -6,40 +6,83 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	template="/WEB-INF/template/crud/tplConsulta.xhtml">
 
-	<ui:param name="mb" value="#{userMBean}" />
-	<ui:param name="updateFiltrar" value="conteudoLista" />
-	<ui:param name="acaoVoltar" value="" />
+	<ui:param name="managedBean" value="#{funcionarioMBean}" />
 	<ui:param name="exibirBotoesPadroes" value="true" />
-	<ui:param name="exibirConteudoLista" value="true" />
+	<ui:param name="exibirConteudoLista" value="#{mBean.verConteudoLista}" />
 
 	<ui:define name="viewNavigationTrail">
-		<h:outputText value="#{ResourceLabel.funcionario_consulta_navegacao}" />
+		<h:outputText value="#{mBean}" /><br />
+		<h:outputText value="#{exibirBotoesPadroes}" /><br />
+		<h:outputText value="#{Labels.funcionario_consulta_navegacao}" />
 	</ui:define>
 	<ui:define name="tituloPagina">
-		<h:outputText value="#{ResourceLabel.funcionario_titulo}" class="tituloPagina" />
+		<h:outputText value="#{Labels.funcionario_titulo}"
+			class="tituloPagina" />
 		<br />
-		<h:outputText value="#{ResourceLabel.funcionario_subtitulo}" />
+		<h:outputText value="#{Labels.funcionario_subtitulo}" />
 	</ui:define>
 
 	<ui:define name="conteudoFiltro" />
 
-	<ui:define name="conteudoExtraFiltro" />
 
 	<ui:define name="conteudoLista">
-		<p:dataTable id="users" var="user" value="#{mb.filtrar}"
-			paginator="true" rows="15" style="width: 50%">
-			<p:column headerText="ID" sortBy="#{user.id}">
-				<h:outputText value="#{user.id}" />
+		<p:dataTable id="users" var="obj" value="#{mBean.funcionarios}"
+			paginator="true" rows="12" paginatorPosition="bottom"
+			rowsPerPageTemplate="12,24,36,48"
+			emptyMessage="#{Labels.lbl_default_NoRecordFont}">
+
+			<p:column headerText="ID" sortBy="#{funcionario.id}">
+				<h:outputText value="#{obj.id}" />
 			</p:column>
-			<p:column headerText="NOME" sortBy="#{user.name}">
-				<h:outputText value="#{user.name}" />
+			<p:column headerText="NOME" sortBy="#{obj.nome}">
+				<h:outputText value="#{obj.nome}" />
 			</p:column>
-			<p:column headerText="SOBRENOME" sortBy="#{user.surname}">
-				<h:outputText value="#{user.surname}" />
+			<p:column headerText="SOBRENOME" sortBy="#{obj.sobrenome}">
+				<h:outputText value="#{obj.sobrenome}" />
 			</p:column>
+
+			<p:column headerText="#{Labels.lbl_default_acoes}"
+				style="width:10%; text-align: center;">
+				<p:commandButton action="#{mBean.detalhe}" title="#{Labels.editar}"
+					icon="ui-icon-search">
+					<f:setPropertyActionListener value="#{obj}"
+						target="#{mBean.funcionario}" />
+				</p:commandButton>
+
+				<p:column headerText="#{Labels.acoes}"
+					style="width:10%; text-align: center;">
+					<p:commandButton action="#{mBean.detalhe(obj)}"
+						title="#{Labels.editar}" icon="ui-icon-search">
+					</p:commandButton>
+
+					<p:commandButton
+						onclick="javascript:return confirm('#{Mensagens.confirmaExclusao}')"
+						icon="ui-icon-trash" title="#{Labels.tooltip_excluir}"
+						immediate="true" actionListener="#{mBean.excluir(obj)}"
+						update="@parent">
+					</p:commandButton>
+
+				</p:column>
+			</p:column>
+
 		</p:dataTable>
 	</ui:define>
 
-	<ui:define name="conteudoPosLista" />
+	<ui:define name="botoesFiltro">
+		<p:commandButton value="#{Labels.tooltip_filtrar}"
+			icon="ui-icon-search" actionListener="#{mBean.filtrar}"
+			update="conteudoLista" />
+
+		<p:commandButton value="#{Labels.tooltip_limpar}"
+			icon="ui-icon-document-b" actionListener="#{mBean.limpar}"
+			update="form1" />
+
+		<p:commandButton value="#{Labels.tooltip_novo}"
+			icon="ui-icon-document" action="#{mBean.novo}" />
+
+		<!-- 					<p:button value="#{Labels.tooltip_default_btnVoltar}" -->
+		<!-- 						icon="ui-icon-arrowthick-1-w" outcome="#{acaoVoltar}" /> -->
+	</ui:define>
+
 
 </ui:composition>

@@ -13,29 +13,20 @@
 				showDetail="true" autoUpdate="true" closable="true"
 				styleClass="mensagensGerais" />
 
-			<p:fieldset legend="#{ResourceLabel.filtro}" id="fieldsetFiltro">
+			<p:fieldset legend="#{Labels.filtro}" id="fieldsetFiltro">
 				<ui:insert name="conteudoFiltro" />
 			</p:fieldset>
 
 			<ui:insert name="conteudoExtraFiltro" />
 
 			<p:toolbar styleClass="toolBar" rendered="#{exibirBotoesPadroes}">
-				<p:toolbarGroup align="left">
-					<p:commandButton value="#{ResourceLabel.tooltip_filtrar}"
-						icon="ui-icon-search" actionListener="#{mb.filtrar}"
-						update="#{updateFiltrar}" />
-					<p:commandButton value="#{ResourceLabel.tooltip_limpar}"
-						icon="ui-icon-document-b" actionListener="#{mb.limpar}"
-						update="form1" />
-					<p:commandButton value="#{ResourceLabel.tooltip_novo}"
-						icon="ui-icon-document" action="#{mb.novo}" />
-					<!-- 					<p:button value="#{ResourceLabel.tooltip_default_btnVoltar}" -->
-					<!-- 						icon="ui-icon-arrowthick-1-w" outcome="#{acaoVoltar}" /> -->
-				</p:toolbarGroup>
+				<f:facet name="left">
+					<ui:insert name="botoesFiltro" />
+				</f:facet>
 			</p:toolbar>
-
+			
 			<p:outputPanel id="conteudoLista">
-				<p:fieldset id="fieldsetLista" legend="#{ResourceLabel.listagem}"
+				<p:fieldset id="fieldsetLista" legend="#{Labels.listagem}"
 					rendered="#{exibirConteudoLista}">
 					<ui:insert name="conteudoLista" />
 				</p:fieldset>
